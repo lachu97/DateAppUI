@@ -1,17 +1,17 @@
 package com.betelguese.dateappui.viewUI
 
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Card
-import androidx.compose.material.Icon
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
@@ -33,6 +33,7 @@ val options = listOf<String>(
 
 @Composable
 fun Interests() {
+
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -45,7 +46,7 @@ fun Interests() {
             modifier = Modifier
                 .size(42.dp)
                 .padding(5.dp),
-            tint = Color.Black.copy(0.5f)
+            tint = Color.White.copy(0.5f)
         )
         Text(
             text = "Interests",
@@ -53,7 +54,7 @@ fun Interests() {
             fontStyle = FontStyle.Normal,
             fontSize = 28.sp,
             textAlign = TextAlign.Center,
-            color = Color.Black.copy(0.6f),
+            color = Color.White.copy(0.6f),
 
             )
         Box {
@@ -65,7 +66,11 @@ fun Interests() {
 
 @Composable
 fun Rowlisty() {
-    LazyRow(modifier = Modifier.fillMaxWidth()) {
+    LazyRow(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(5.dp)
+    ) {
         itemsIndexed(options) { idx, item ->
 
             Listcard(item)
@@ -77,18 +82,18 @@ fun Rowlisty() {
 fun Listcard(item: String) {
     Card(
         modifier = Modifier
-            .padding(5.dp)
+            .padding(10.dp)
             .wrapContentSize(),
         elevation = 10.dp,
         shape = RoundedCornerShape(12.dp),
-        backgroundColor = Color.White.copy(0.3f)
+        backgroundColor = Color.White.copy(0.4f)
     ) {
         Text(
             text = item,
             fontFamily = FontFamily.Monospace,
             fontStyle = FontStyle.Normal,
             fontSize = 25.sp,
-            color = Color.Blue.copy(0.4f)
+            color = Color.LightGray.copy(0.4f)
         )
     }
 }
@@ -97,8 +102,23 @@ fun Listcard(item: String) {
 @Composable
 fun Prev() {
     Scaffold(modifier = Modifier.fillMaxSize()) {
-        Interests()
-        Spacer(modifier = Modifier.padding(5.dp))
-        Rowlisty()
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(MaterialTheme.colors.background)
+        ) {
+            Image(
+                painter = painterResource(id = R.drawable.bg),
+                contentDescription = null,
+                modifier = Modifier.fillMaxSize(),
+                contentScale = ContentScale.Fit
+            )
+        }
+        Column(modifier = Modifier.fillMaxSize()) {
+
+            Interests()
+            Spacer(modifier = Modifier.padding(5.dp))
+            Rowlisty()
+        }
     }
 }
