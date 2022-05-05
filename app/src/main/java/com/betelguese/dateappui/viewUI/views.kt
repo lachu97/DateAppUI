@@ -71,7 +71,7 @@ fun Rowlisty() {
             .fillMaxWidth()
             .padding(5.dp)
     ) {
-        itemsIndexed(options) { idx, item ->
+        itemsIndexed(options) { _, item ->
 
             Listcard(item)
         }
