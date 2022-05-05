@@ -52,6 +52,8 @@ fun PrevMyUI() {
                     .align(Alignment.Center),
                 verticalArrangement = Arrangement.Center
             ) {
+                Image(painter = painterResource(id = R.drawable.logo), contentDescription = null)
+                Spacer(modifier = Modifier.padding(bottom = 48.dp, top = 10.dp))
                 Button(
                     onClick = { /*TODO*/ },
                     border = BorderStroke(width = 1.dp, color = Color.Cyan),
@@ -76,7 +78,7 @@ fun PrevMyUI() {
                         fontStyle = FontStyle.Normal,
                         fontFamily = FontFamily.Serif,
                         fontWeight = FontWeight.Bold,
-                        color = Color.Magenta.copy(0.7f)
+                        color = Color.White.copy(0.9f)
                     )
                 }
                 Spacer(modifier = Modifier.padding(10.dp))
@@ -104,7 +106,17 @@ fun PrevMyUI() {
                         fontStyle = FontStyle.Normal,
                         fontFamily = FontFamily.Serif,
                         fontWeight = FontWeight.Bold,
-                        color = Color.Magenta.copy(0.7f)
+                        color = Color.White.copy(0.9f)
+                    )
+                }
+                Spacer(modifier = Modifier.padding(10.dp))
+                TextButton(onClick = { TODO()}) {
+                    Text(
+                        text = "Logging In ->",
+                        fontWeight = FontWeight.ExtraBold,
+                        fontFamily = FontFamily.SansSerif,
+                        fontSize = 13.sp,
+                        color = Color.White
                     )
                 }
 
