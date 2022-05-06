@@ -6,22 +6,29 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.betelguese.dateappui.R
+import com.betelguese.dateappui.ScreenViewModel
 
 @Composable
-fun DetailViewUI() {
+fun DetailViewUI(viewModel: ScreenViewModel) {
     Scaffold(modifier = Modifier.fillMaxSize()) {
+        var imagy by remember {
+            mutableStateOf(viewModel.changestate.value)
+        }
+
         Box(
             modifier = Modifier
                 .fillMaxSize()
                 .background(MaterialTheme.colors.background)
         ) {
             Image(
-                painter = painterResource(id = R.drawable.love),
+                painter = painterResource(id = imagy),
                 contentDescription = null,
                 modifier = Modifier.fillMaxSize(),
                 contentScale = ContentScale.FillBounds
@@ -30,7 +37,7 @@ fun DetailViewUI() {
 
                 Interests()
                 Spacer(modifier = Modifier.padding(5.dp))
-                Rowlisty()
+                Rowlisty(viewModel)
             }
         }
 

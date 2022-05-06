@@ -2,6 +2,7 @@ package com.betelguese.dateappui.viewUI
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.itemsIndexed
@@ -20,15 +21,33 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.betelguese.dateappui.R
+import com.betelguese.dateappui.ScreenViewModel
 
-val options = listOf<String>(
-    "Hiking",
-    "Foodie",
-    "Travel",
-    "Fitness",
-    "Camping",
-    "Movie",
-    "Work",
+data class select(
+    val name: String,
+    val image: Int = R.drawable.love
+)
+
+val options = listOf<select>(
+    select("Hiking", R.drawable.hiking),
+    select("Foodie", R.drawable.foodie),
+    select("Travel", R.drawable.hiking),
+    select("Fitness", R.drawable.fitness),
+    select("Camping", R.drawable.camp),
+    select("Movie", R.drawable.movie),
+    select("Work", R.drawable.work)
+)
+val imageMap = mapOf<String, Int>(
+    "Hiking" to R.drawable.hiking,
+    "Foodie" to R.drawable.foodie,
+    "Travel" to R.drawable.hiking,
+    "Fitness" to R.drawable.fitness,
+    "Camping" to R.drawable.camp,
+    "Movie" to R.drawable.movie,
+    "Work" to R.drawable.work,
+    "Love" to R.drawable.love
+
+
 )
 
 @Composable
@@ -65,24 +84,29 @@ fun Interests() {
 }
 
 @Composable
-fun Rowlisty() {
+fun Rowlisty(vm: ScreenViewModel) {
     LazyRow(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(5.dp)
+            .padding(10.dp)
     ) {
         itemsIndexed(options) { _, item ->
 
-            Listcard(item)
+            Listcard(item.name) {
+                vm.getImageValue(item.name)
+            }
         }
     }
 }
 
 @Composable
-fun Listcard(item: String) {
+fun Listcard(item: String, onclick: () -> Unit) {
     Card(
         modifier = Modifier
             .padding(10.dp)
+            .clickable {
+                onclick
+            }
             .wrapContentSize(),
         elevation = 10.dp,
         shape = RoundedCornerShape(12.dp),
@@ -118,7 +142,7 @@ fun Prev() {
 
             Interests()
             Spacer(modifier = Modifier.padding(5.dp))
-            Rowlisty()
+
         }
     }
 }
