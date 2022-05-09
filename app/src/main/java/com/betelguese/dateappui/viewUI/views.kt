@@ -23,6 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.betelguese.dateappui.R
 import com.betelguese.dateappui.ScreenViewModel
+import java.nio.file.WatchEvent
 
 data class select(
     val name: String,
@@ -66,7 +67,7 @@ fun Interests() {
             modifier = Modifier
                 .size(42.dp)
                 .padding(5.dp),
-            tint = Color.White.copy(0.5f)
+            tint = Color.Black.copy(0.9f)
         )
         Text(
             text = "Interests",
@@ -74,7 +75,7 @@ fun Interests() {
             fontStyle = FontStyle.Normal,
             fontSize = 28.sp,
             textAlign = TextAlign.Center,
-            color = Color.White.copy(0.6f),
+            color = Color.Black.copy(0.8f),
 
             )
         Box {
@@ -109,15 +110,16 @@ fun Listcard(item: String, onclick: () -> Unit) {
             .wrapContentSize()
             .clickable(onClick = onclick),
         elevation = 10.dp,
-        shape = RoundedCornerShape(12.dp),
-        backgroundColor = Color.White.copy(0.4f)
+        shape = RoundedCornerShape(10.dp),
+        backgroundColor = Color.LightGray.copy(0.6f)
     ) {
         Text(
             text = item,
             fontFamily = FontFamily.Monospace,
             fontStyle = FontStyle.Normal,
             fontSize = 25.sp,
-            color = Color.LightGray.copy(0.4f)
+            color = Color.Black.copy(0.9f),
+            modifier = Modifier.padding(4.dp)
         )
     }
 }
