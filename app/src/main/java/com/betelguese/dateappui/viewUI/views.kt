@@ -1,5 +1,6 @@
 package com.betelguese.dateappui.viewUI
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -92,9 +93,10 @@ fun Rowlisty(vm: ScreenViewModel) {
     ) {
         itemsIndexed(options) { _, item ->
 
-            Listcard(item.name) {
+            Listcard(item.name,{
                 vm.getImageValue(item.name)
-            }
+                Log.i("MainAct","Value changed =${vm.changestate.value}")
+            })
         }
     }
 }
@@ -104,10 +106,8 @@ fun Listcard(item: String, onclick: () -> Unit) {
     Card(
         modifier = Modifier
             .padding(10.dp)
-            .clickable {
-                onclick
-            }
-            .wrapContentSize(),
+            .wrapContentSize()
+            .clickable(onClick = onclick),
         elevation = 10.dp,
         shape = RoundedCornerShape(12.dp),
         backgroundColor = Color.White.copy(0.4f)

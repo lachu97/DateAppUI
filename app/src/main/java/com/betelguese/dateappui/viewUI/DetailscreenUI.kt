@@ -18,7 +18,7 @@ import com.betelguese.dateappui.ScreenViewModel
 @Composable
 fun DetailViewUI(viewModel: ScreenViewModel) {
     Scaffold(modifier = Modifier.fillMaxSize()) {
-        var imagy by remember {
+        var imagy = remember {
             mutableStateOf(viewModel.changestate.value)
         }
 
@@ -28,7 +28,7 @@ fun DetailViewUI(viewModel: ScreenViewModel) {
                 .background(MaterialTheme.colors.background)
         ) {
             Image(
-                painter = painterResource(id = imagy),
+                painter = painterResource(id = viewModel.changestate.value),
                 contentDescription = null,
                 modifier = Modifier.fillMaxSize(),
                 contentScale = ContentScale.FillBounds
